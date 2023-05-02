@@ -1,56 +1,12 @@
-<div class="catcontainer">
-  <div class="itemcont">
-    <img
-      class="catimage"
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Salesforce.com_logo.svg/1200px-Salesforce.com_logo.svg.png"
-    />
-    <div class="overlay">
-      <div class="text">Salesforce Certifications</div>
+<div class="pagecontainer">
+  <h1>Certifications</h1>
+  <div class="catcontainer">
+    <div *ngFor="let cert of certs; let i = index" class="itemcont">
+      <img class="catimage" src="{{ cert.src }}" />
+      <div class="overlay">
+        <div class="text">{{ cert.title }}</div>
+      </div>
     </div>
-  </div>
-  <div class="itemcont">
-    <img
-      class="catimage"
-      src="https://logos-world.net/wp-content/uploads/2022/02/ServiceNow-Logo.jpg"
-    />
-    <div class="overlay">
-      <div class="text">ServiceNow Certifications</div>
-    </div>
-  </div>
-  <div class="itemcont">
-    <img
-      class="catimage"
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Cisco_logo.svg/1024px-Cisco_logo.svg.png"
-    />
-    <div class="overlay">
-      <div class="text">CISCO Certifications</div>
-    </div>
-  </div>
-  <div class="itemcont">
-    <img
-      class="catimage"
-      src="https://images.credly.com/images/63482325-a0d6-4f64-ae75-f5f33922c7d0/CompTIA_A_2Bce.png"
-    />
-    <div class="overlay">
-      <div class="text">CompTIA Certifications</div>
-    </div>
-  </div>
-  <div class="itemcont">
-    <img
-      class="catimage"
-      src="https://images.credly.com/images/5e6f5247-1d61-4932-a5da-999a7feec067/isc2_cissp2.png"
-    />
-    <div class="overlay">
-      <div class="text">CISSP Certifications</div>
-    </div>
-  </div>
-  <div class="itemcont">
-    <img
-      class="catimage"
-      src="https://static-00.iconduck.com/assets.00/aws-icon-512x512-hniukvcn.png"
-    />
-    <div class="overlay">
-      <div class="text">AWS Certifications</div>
-    </div>
+    <div class="itemcont"></div>
   </div>
 </div>

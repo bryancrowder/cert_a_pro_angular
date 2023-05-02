@@ -10,6 +10,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  font-family: 'Open Sans', sans-serif;
  
 }
 .overlay {
@@ -28,10 +29,12 @@
 .itemcont:hover .overlay {
   opacity: .8;
   border-radius: 5%;
+cursor:pointer;
+
 }
 .itemcont {
   position: relative;
- 
+  margin-bottom: 50px;
 }
 .text {
   color: white;
@@ -43,4 +46,15 @@
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
+}
+h1{
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  font-size: 70px;
+  margin-bottom: 15px;
+  color: white;
+
+}
+.pagecontainer{
+  background-color: #87CBB9
 }
