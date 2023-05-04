@@ -25,6 +25,7 @@
   transition: .5s ease;
   background-color: black;
   border-radius: 5%;
+ 
 }
 .itemcont:hover .overlay {
   opacity: .8;

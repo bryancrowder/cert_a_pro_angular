@@ -1,0 +1,28 @@
+
+.hero{
+    background: url(https://cdn.pixabay.com/photo/2022/06/27/08/09/graduation-7287004_960_720.jpg)  no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 94vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 6vh;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: rgba(0,0,0,0.45);
+}
+.heroheader{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 80px;
+    color: white;
+    position: relative;
+}
