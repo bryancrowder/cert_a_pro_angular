@@ -2,7 +2,7 @@
   height: 30vh;
   width:20vw;
   margin: 50px;
-  flex-direction: row;
+ 
 
   
 }
@@ -11,6 +11,7 @@
   flex-wrap: wrap;
   justify-content: center;
   font-family: 'Open Sans', sans-serif;
+   flex-direction: row;
  
 }
 .overlay {
@@ -58,4 +59,23 @@ h1{
 }
 .pagecontainer{
   background-color: #87CBB9
+}
+
+@media only screen and (max-width: 1700px) {
+  .catcontainer {
+    flex-direction: column ;
+    justify-content: center;
+    align-items: center;
+  }
+  .catimage{
+    height: 40vh;
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 560px) {
+
+  .catimage{
+    height: 30vh;
+    width: 80vw;
+  }
 }
