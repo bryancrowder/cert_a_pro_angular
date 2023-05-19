@@ -1,0 +1,68 @@
+.certcont{
+    font-family: 'Open Sans', sans-serif;
+    background-color: #87CBB9;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.head{
+    
+    justify-content: start;
+    top: 10vh;
+    position: absolute;
+  
+    
+}
+.certhead{
+color: white;
+font-size: 60px;
+margin: 10px;
+}
+.certtype{
+    font-size: 80px;
+    color: white;
+    margin: 10px;
+}
+
+.cardcont{
+    display: flex;
+    justify-content: end;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+}
+.certitem{
+    width: 60vw;
+    height: auto;
+    font-size: 20px;
+    border: solid #577D86 2px;
+    margin: 15px;
+    padding: 10px;
+    color:white;
+    
+   
+}
+.certtitle{
+    font-weight: bold;
+    font-size: 40px;
+
+}
+.certlist{
+list-style-type: none;
+
+}
+
+.certlist :hover{
+    transition: all .5s ease 0s; 
+    -webkit-transition: all .5s ease 0s; 
+    background-color: #3498db
+}
+
+ li :after { 
+  transition: all 0.3s ease 0s; 
+  -webkit-transition: all 0.3s ease 0s; 
+  z-index: -1;
+  background-color: #3498db;
+}
+

@@ -1,10 +1,10 @@
 <div class="pagecontainer">
   <h1>Certifications</h1>
   <div class="catcontainer">
-    <div *ngFor="let cert of certs; let i = index" class="itemcont">
-      <img class="catimage" src="{{ cert.src }}" />
+    <div *ngFor="let category of categories | async" class="itemcont">
+      <img class="catimage" src="{{ category.image }}" />
       <div class="overlay">
-        <div class="text">{{ cert.title }}</div>
+        <div class="text">{{ category.title }} {{ category.id }}</div>
       </div>
     </div>
     <div class="itemcont"></div>

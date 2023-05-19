@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "cert-a-pro": {
+      "hosting": {
+        "cert-a-pro": [
+          "cert-a-pro"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "cert-a-pro"
+  }
+}
