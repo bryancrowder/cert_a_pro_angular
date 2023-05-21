@@ -6,57 +6,11 @@
   <div class="cardcont">
     <ul class="certlist">
       <li class="certitem">
-        <a href="www.google.com">
-          <p class="certtitle">Certification Title</p>
-          <p>
-            Certification description udin nibh sit. Dui id ornare arcu odio ut
-            sem nulla. Tincidunt tortor aliquam nulla facilisi cras fermentum
-            odio eu feugiat. Sit amet est placerat in egestas erat imperdiet
-            sed. Tellus in metus vulputate eu scelerisque. Vulputate sapien nec
-            sagittis aliquam malesuada bibendum. Justo nec ultrices dui sapien
-            eget mi proin sed. Donec enim diam vulputate ut pharetra sit amet
-            aliquam. Elementum curabitur vitae nunc sed velit dignissim sodales
-            ut eu. Non diam phasellus vestibulum lorem. Quis commodo odio aenean
-            sed adipiscing diam donec. Elementum sagittis vitae et leo duis ut
-            diam quam.
-          </p>
-        </a>
-      </li>
-      <li class="certitem">
-        <a href="www.google.com">
-          <p class="certtitle">Certification Title</p>
-          <p>
-            Certification description udin nibh sit. Dui id ornare arcu odio ut
-            sem nulla. Tincidunt tortor aliquam nulla facilisi cras fermentum
-            odio eu feugiat. Sit amet est placerat in egestas erat imperdiet
-            sed. Tellus in metus vulputate eu scelerisque. Vulputate sapien nec
-            sagittis aliquam malesuada bibendum. Justo nec ultrices dui sapien
-            eget mi proin sed. Donec enim diam vulputate ut pharetra sit amet
-            aliquam. Elementum curabitur vitae nunc sed velit dignissim sodales
-            ut eu. Non diam phasellus vestibulum lorem. Quis commodo odio aenean
-            sed adipiscing diam donec. Elementum sagittis vitae et leo duis ut
-            diam quam.
-          </p>
-        </a>
-      </li>
-      <li class="certitem">
-        <a href="www.google.com">
-          <p  class="certtitle">Certification Title</p>
-          <p>
-            Certification description udin nibh sit. Dui id ornare arcu odio ut
-            sem nulla. Tincidunt tortor aliquam nulla facilisi cras fermentum
-            odio eu feugiat. Sit amet est placerat in egestas erat imperdiet
-            sed. Tellus in metus vulputate eu scelerisque. Vulputate sapien nec
-            sagittis aliquam malesuada bibendum. Justo nec ultrices dui sapien
-            eget mi proin sed. Donec enim diam vulputate ut pharetra sit amet
-            aliquam. Elementum curabitur vitae nunc sed velit dignissim sodales
-            ut eu. Non diam phasellus vestibulum lorem. Quis commodo odio aenean
-            sed adipiscing diam donec. Elementum sagittis vitae et leo duis ut
-            diam quam. HERE 
-          </p>
+        <a [href]="(certification | async)?.link">
+          <p class="certtitle">{{ (certification | async)?.title }}</p>
+          <p>{{ (certification | async)?.description }}</p>
         </a>
       </li>
     </ul>
   </div>
 </div>
-<router-outlet></router-outlet>

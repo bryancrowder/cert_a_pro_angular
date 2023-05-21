@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'homepage', component: HomepageComponent },
   { path: 'categories', component: CategoriesComponent },
   { path: 'certifications', component: CertificationsComponent },
+  { path: 'certifications/:id', component: CertificationsComponent },
 ];
 
 @NgModule({

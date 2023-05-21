@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Firestore, collectionData, collection }  from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
@@ -15,10 +16,16 @@ import { Router } from '@angular/router';
 export class CategoriesComponent {
   categories: Observable<CategoryWithId[]> ;
 
-  constructor(private readonly firestore: Firestore){
+  constructor(private readonly firestore: Firestore, private router: Router){
     const categoriesCollection = collection(this.firestore, 'categories');
     this.categories = collectionData(categoriesCollection, { idField: 'id' }) as Observable<CategoryWithId[]>;
+    
   }
+  
+  navigateToCategory(categoryId: string) {
+    this.router.navigate(['/certifications', categoryId]);
+  }
+
 }
 
 export interface Category {
