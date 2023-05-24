@@ -18,6 +18,7 @@ import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import {Routes, RouterModule} from '@angular/router'
+
 const appRoutes: Routes =[
   {path: 'certifications', component: CertificationsComponent}
 ]

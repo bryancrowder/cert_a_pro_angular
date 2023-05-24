@@ -1,16 +1,13 @@
-<div class="certcont">
-  <div class="head">
-    <h1 class="certtype">Service Now</h1>
-    <h2 class="certhead">Certifications</h2>
+<div *ngIf="certifications.length > 0">
+  <h1>Certifications</h1>
+  <div *ngFor="let certification of certifications">
+    <h2>{{ certification?.title }}</h2>
+    <p>{{ certification?.description }}</p>
+    <p>Abbreviation: {{ certification?.abbreviation }}</p>
+    <hr />
   </div>
-  <div class="cardcont">
-    <ul class="certlist">
-      <li class="certitem">
-        <a [href]="(certification | async)?.link">
-          <p class="certtitle">{{ (certification | async)?.title }}</p>
-          <p>{{ (certification | async)?.description }}</p>
-        </a>
-      </li>
-    </ul>
-  </div>
+</div>
+
+<div *ngIf="certifications.length === 0">
+  <p>No certifications found.</p>
 </div>
