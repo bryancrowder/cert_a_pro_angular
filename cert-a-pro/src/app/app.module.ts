@@ -17,8 +17,10 @@ import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage,getStorage } from '@angular/fire/storage';
-import {Routes, RouterModule} from '@angular/router'
-
+import {Routes, RouterModule} from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component'
+import { FormsModule } from '@angular/forms'; 
 const appRoutes: Routes =[
   {path: 'certifications', component: CertificationsComponent}
 ]
@@ -29,10 +31,13 @@ const appRoutes: Routes =[
     HomepageComponent,
     CategoriesComponent,
     CertificationsComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     RouterModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()),

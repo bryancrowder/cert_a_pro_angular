@@ -1,13 +1,17 @@
-<div *ngIf="certifications.length > 0">
-  <h1>Certifications</h1>
-  <div *ngFor="let certification of certifications">
-    <h2>{{ certification?.title }}</h2>
-    <p>{{ certification?.description }}</p>
-    <p>Abbreviation: {{ certification?.abbreviation }}</p>
+<div class="certcont" *ngIf="certifications.length > 0">
+  <h1 class="certhead">Certifications</h1>
+  <div class="certitem" *ngFor="let certification of certifications">
+    <a href="#" (click)="onCertificationClick(certification)">
+      <h2>{{ certification?.title }}</h2>
+      <p>{{ certification?.description }}</p>
+      <p>Abbreviation: {{ certification?.abbreviation }}</p>
+    </a>
     <hr />
   </div>
+  <div class="certcont-overlay"></div>
 </div>
 
 <div *ngIf="certifications.length === 0">
   <p>No certifications found.</p>
 </div>
+

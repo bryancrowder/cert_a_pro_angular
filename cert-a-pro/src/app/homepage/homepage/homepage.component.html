@@ -2,12 +2,12 @@
   <!-- Hero -->
   <div class="hero">
     <h1 class="heroheader">One Step Closer To Success</h1>
-    <div>
+    <div *ngIf="!isLoggedIn">
       <button type="button" class="signup btn"><span>Get Started</span></button>
       <button type="button" class="login btn"><span>Sign in</span></button>
     </div>
   </div>
-<!-- Growth Section -->
+  <!-- Growth Section -->
   <div class="growthsection">
     <h1>Grow your skills and become a master at any certification</h1>
   </div>
