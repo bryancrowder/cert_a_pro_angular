@@ -5,6 +5,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CertificationsComponent } from './certifications/certifications.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { QuestionselectorComponent } from './questionselector/questionselector.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/homepage', pathMatch: 'full'},
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'certifications', component: CertificationsComponent },
   { path: 'certifications/:id', component: CertificationsComponent },
   {path:'login', component: LoginComponent},
-  {path: 'signup', component: SignupComponent}
+  {path: 'signup', component: SignupComponent},
+  {path: 'selection', component: QuestionselectorComponent}
 ];
 
 @NgModule({

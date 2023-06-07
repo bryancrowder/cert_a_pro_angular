@@ -20,7 +20,9 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import {Routes, RouterModule} from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component'
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
+import { QuestionselectorComponent } from './questionselector/questionselector.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
 const appRoutes: Routes =[
   {path: 'certifications', component: CertificationsComponent}
 ]
@@ -33,6 +35,7 @@ const appRoutes: Routes =[
     CertificationsComponent,
     LoginComponent,
     SignupComponent,
+    QuestionselectorComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ const appRoutes: Routes =[
     provideMessaging(() => getMessaging()),
     providePerformance(() => getPerformance()),
     provideRemoteConfig(() => getRemoteConfig()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    NgbModule
   ],
   providers: [
     ScreenTrackingService,UserTrackingService

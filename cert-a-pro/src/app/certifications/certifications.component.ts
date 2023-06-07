@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, query, where, getDocs, doc } from 'firebase/firestore';
 
 @Component({
   selector: 'app-certifications',
@@ -34,7 +34,9 @@ export class CertificationsComponent implements OnInit {
           .then((querySnapshot) => {
             if (!querySnapshot.empty) {
               querySnapshot.forEach((doc) => {
-                this.certifications.push(doc.data()); // Store each certification in the array
+                const certification = doc.data();
+                certification['id'] = doc.id; // Store the document ID as 'id' property in the certification object
+                this.certifications.push(certification); // Store each certification in the array
               });
             } else {
               console.log('No certifications found!');
@@ -50,10 +52,15 @@ export class CertificationsComponent implements OnInit {
     });
   }
 
-  onCertificationClick(certification: any) {
-    // Handle the click event for the certification
-    // You can access the certification data and perform any desired actions
-    console.log('Clicked certification:', certification);
-    // Additional logic here
+  navigateToQuestionSelector(certification: any) {
+    this.router.navigate(['/selection'], {
+      queryParams: {
+        certificationID: certification.id,
+        title: certification.title,
+        categoryID: this.categoryID
+      }
+    });
   }
+
+
 }

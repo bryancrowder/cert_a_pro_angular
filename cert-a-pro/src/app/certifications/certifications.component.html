@@ -1,7 +1,7 @@
 <div class="certcont" *ngIf="certifications.length > 0">
   <h1 class="certhead">Certifications</h1>
   <div class="certitem" *ngFor="let certification of certifications">
-    <a href="#" (click)="onCertificationClick(certification)">
+    <a (click)="navigateToQuestionSelector(certification)">
       <h2>{{ certification?.title }}</h2>
       <p>{{ certification?.description }}</p>
       <p>Abbreviation: {{ certification?.abbreviation }}</p>
@@ -14,4 +14,3 @@
 <div *ngIf="certifications.length === 0">
   <p>No certifications found.</p>
 </div>
-
