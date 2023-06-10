@@ -6,6 +6,7 @@ import { CertificationsComponent } from './certifications/certifications.compone
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { QuestionselectorComponent } from './questionselector/questionselector.component'
+import { QuizComponent } from './quiz/quiz.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/homepage', pathMatch: 'full'},
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'certifications/:id', component: CertificationsComponent },
   {path:'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'selection', component: QuestionselectorComponent}
+  {path: 'selection', component: QuestionselectorComponent},
+  {path: 'quiz', component: QuizComponent}
 ];
 
 @NgModule({

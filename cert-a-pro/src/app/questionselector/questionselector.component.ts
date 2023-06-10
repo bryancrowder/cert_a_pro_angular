@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-questionselector',
@@ -9,9 +9,10 @@ import { ActivatedRoute } from '@angular/router';
 export class QuestionselectorComponent implements OnInit {
   certificationID: string | null = null;
   certificationTitle: string | null = null;
-  selectedQuestionCount!: number; // Using definite assignment assertion operator
+  questionCounts = [15, 25, 50, 100, 150];
+  selectedQuestionCount: number | null = null;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -20,9 +21,18 @@ export class QuestionselectorComponent implements OnInit {
     });
   }
 
-  setQuestionCount(questionCount: number): void {
-    this.selectedQuestionCount = questionCount;
-    // Perform any additional actions based on the selected question count
-    console.log('Selected Question Count:', this.selectedQuestionCount);
+  setQuestionCount(count: number) {
+    this.selectedQuestionCount = count;
+  }
+
+  submitSelection() {
+    if (this.selectedQuestionCount && this.certificationID) {
+      this.router.navigate(['/quiz'], {
+        queryParams: {
+          count: this.selectedQuestionCount,
+          certificationID: this.certificationID
+        }
+      });
+    }
   }
 }

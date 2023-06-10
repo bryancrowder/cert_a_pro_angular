@@ -1,31 +1,23 @@
-<p>{{ certificationTitle }}</p>
-<p>Number of questions:</p>
-<div class="dropdown">
-  <button
-    class="btn btn-secondary dropdown-toggle"
-    type="button"
-    id="questionCountDropdown"
-    data-bs-toggle="dropdown"
-    aria-haspopup="true"
-    aria-expanded="false"
-  >
-    Select Question Count
+<div>
+  <p>{{ certificationTitle }}</p>
+  <div class="dropdown">
+    <button
+      class="btn btn-secondary dropdown-toggle"
+      type="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      Select Question Count
+    </button>
+    <ul class="dropdown-menu">
+      <li *ngFor="let count of questionCounts">
+        <button class="dropdown-item" (click)="setQuestionCount(count)">
+          {{ count }}
+        </button>
+      </li>
+    </ul>
+  </div>
+  <button class="btn btn-primary mt-3" (click)="submitSelection()">
+    Submit
   </button>
-  <ul class="dropdown-menu" aria-labelledby="questionCountDropdown">
-    <li>
-      <a class="dropdown-item" href="#" (click)="setQuestionCount(15)">15</a>
-    </li>
-    <li>
-      <a class="dropdown-item" href="#" (click)="setQuestionCount(25)">25</a>
-    </li>
-    <li>
-      <a class="dropdown-item" href="#" (click)="setQuestionCount(50)">50</a>
-    </li>
-    <li>
-      <a class="dropdown-item" href="#" (click)="setQuestionCount(100)">100</a>
-    </li>
-    <li>
-      <a class="dropdown-item" href="#" (click)="setQuestionCount(150)">150</a>
-    </li>
-  </ul>
 </div>
