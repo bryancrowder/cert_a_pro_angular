@@ -1,10 +1,12 @@
 <h1>Quiz Component</h1>
 
 <div *ngIf="questions.length > 0">
+  <p>Percentage of correct answers: {{ calculatePercentage() }}%</p> <!-- Display the percentage -->
   <h2>Questions:</h2>
   <ul class="question-list">
     <li *ngFor="let question of questions; let i = index">
       <h3>{{ question.question }}</h3>
+
       <ul class="answer-list">
         <li *ngFor="let answer of question.answers">
           <label>
@@ -21,6 +23,7 @@
       </ul>
     </li>
   </ul>
+  <button (click)="submitQuiz()">Submit</button>
 </div>
 
 <div *ngIf="questions.length === 0">
