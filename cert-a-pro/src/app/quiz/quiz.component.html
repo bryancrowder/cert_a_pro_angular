@@ -1,1 +1,28 @@
-<p>qw</p>
+<h1>Quiz Component</h1>
+
+<div *ngIf="questions.length > 0">
+  <h2>Questions:</h2>
+  <ul class="question-list">
+    <li *ngFor="let question of questions; let i = index">
+      <h3>{{ question.question }}</h3>
+      <ul class="answer-list">
+        <li *ngFor="let answer of question.answers">
+          <label>
+            <input
+              type="radio"
+              [name]="'question-' + i"
+              [value]="answer"
+              [checked]="question.selectedAnswer === answer"
+              (change)="selectAnswer(question, answer)"
+            />
+            {{ answer.answer }}
+          </label>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="questions.length === 0">
+  <p>No questions found.</p>
+</div>

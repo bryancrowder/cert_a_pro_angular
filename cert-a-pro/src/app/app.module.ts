@@ -23,7 +23,7 @@ import { SignupComponent } from './signup/signup.component'
 import { FormsModule } from '@angular/forms';
 import { QuestionselectorComponent } from './questionselector/questionselector.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { QuizComponent } from './quiz/quiz.component'; 
+import { QuizComponent } from './quiz/quiz.component';
 const appRoutes: Routes =[
   {path: 'certifications', component: CertificationsComponent}
 ]
@@ -37,7 +37,8 @@ const appRoutes: Routes =[
     LoginComponent,
     SignupComponent,
     QuestionselectorComponent,
-    QuizComponent,
+    QuizComponent
+    
   ],
   imports: [
     BrowserModule,
