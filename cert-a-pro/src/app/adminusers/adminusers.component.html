@@ -1,0 +1,46 @@
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let user of users">
+    <form class="row g-3" (submit)="updateUser(user)">
+      <div class="col-md-4">
+        <label for="username" class="form-label"
+          ><strong>Username:</strong></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="user.user_name"
+          name="user_name"
+          id="username"
+        />
+      </div>
+      <div class="col-md-4">
+        <label for="email" class="form-label"><strong>Email:</strong></label>
+        <input
+          type="email"
+          class="form-control"
+          [(ngModel)]="user.email"
+          name="email"
+          id="email"
+        />
+      </div>
+      <div class="col-md-3">
+        <label for="role" class="form-label"><strong>Role:</strong></label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="user.role"
+          name="role"
+          id="role"
+        />
+      </div>
+      <div class="col-md-1">
+        <label for="uid" class="form-label"><strong>UID:</strong></label>
+        <span id="uid" class="form-control-plaintext">{{ user.uid }}</span>
+      </div>
+      <div class="col-md-12 d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary me-2">Update</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+      </div>
+    </form>
+  </li>
+</ul>

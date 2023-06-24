@@ -24,6 +24,10 @@ import { FormsModule } from '@angular/forms';
 import { QuestionselectorComponent } from './questionselector/questionselector.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { QuizComponent } from './quiz/quiz.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminusersComponent } from './adminusers/adminusers.component';
+import { AdminqComponent } from './adminq/adminq.component';
+import { AdmincatComponent } from './admincat/admincat.component';
 const appRoutes: Routes =[
   {path: 'certifications', component: CertificationsComponent}
 ]
@@ -37,7 +41,11 @@ const appRoutes: Routes =[
     LoginComponent,
     SignupComponent,
     QuestionselectorComponent,
-    QuizComponent
+    QuizComponent,
+    AdminComponent,
+    AdminusersComponent,
+    AdminqComponent,
+    AdmincatComponent
     
   ],
   imports: [

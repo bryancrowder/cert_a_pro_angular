@@ -1,7 +1,8 @@
 <h1>Quiz Component</h1>
 
 <div *ngIf="questions.length > 0">
-  <p>Percentage of correct answers: {{ calculatePercentage() }}%</p> <!-- Display the percentage -->
+  <p>Percentage of correct answers: {{ calculatePercentage() }}%</p>
+  <!-- Display the percentage -->
   <h2>Questions:</h2>
   <ul class="question-list">
     <li *ngFor="let question of questions; let i = index">
@@ -10,13 +11,31 @@
       <ul class="answer-list">
         <li *ngFor="let answer of question.answers">
           <label>
-            <input
-              type="radio"
-              [name]="'question-' + i"
-              [value]="answer"
-              [checked]="question.selectedAnswer === answer"
-              (change)="selectAnswer(question, answer)"
-            />
+            <ng-template
+              [ngIf]="question.questionType === 'QuestionType.selectOne'"
+            >
+              <input
+                type="radio"
+                [name]="'question-' + i"
+                [value]="answer"
+                [checked]="question.selectedAnswer === answer"
+                (change)="selectAnswer(question, answer)"
+              />
+            </ng-template>
+            <ng-template
+              [ngIf]="question.questionType === 'QuestionType.selectAll'"
+            >
+              <input
+                type="checkbox"
+                [name]="'question-' + i"
+                [value]="answer"
+                [checked]="
+                  question.selectedAnswers &&
+                  question.selectedAnswers.includes(answer)
+                "
+                (change)="selectAnswer(question, answer)"
+              />
+            </ng-template>
             {{ answer.answer }}
           </label>
         </li>

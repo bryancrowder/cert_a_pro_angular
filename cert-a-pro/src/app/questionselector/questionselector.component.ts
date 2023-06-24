@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class QuestionselectorComponent implements OnInit {
   certificationID: string | null = null;
   certificationTitle: string | null = null;
-  questionCounts = [15, 25, 50, 100, 150];
+  questionCounts = [5,10,15, 25, 50, 100, 150];
   selectedQuestionCount: number | null = null;
 
   constructor(private route: ActivatedRoute, private router: Router) {}
