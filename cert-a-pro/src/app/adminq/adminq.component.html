@@ -1,1 +1,57 @@
-<p>adminq works!</p>
+<h2>Edit Questions</h2>
+
+<form class="needs-validation" (ngSubmit)="submitAnswers()" novalidate>
+  <div *ngFor="let question of questions; let i = index">
+    <div class="mb-3">
+      <label class="form-label">Question {{ i + 1 }}:</label>
+      <div class="input-group">
+        <input
+          class="form-control"
+          type="text"
+          [(ngModel)]="question.question"
+          name="question{{ i }}"
+          required
+        />
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="editQuestion(i)"
+        >
+          Edit
+        </button>
+      </div>
+      <div class="invalid-feedback">Please provide a question.</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Answers:</label>
+      <ul class="list-group">
+        <li
+          *ngFor="let answer of question.answers; let j = index"
+          class="list-group-item"
+        >
+          <div class="input-group">
+            <input
+              class="form-control"
+              type="text"
+              [(ngModel)]="answer.answer"
+              name="answer{{ i }}{{ j }}"
+              required
+            />
+            <label class="form-check-label">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                [(ngModel)]="answer.correctAnswer"
+                name="correctAnswer{{ i }}{{ j }}"
+              />
+              Correct
+            </label>
+          </div>
+          <div class="invalid-feedback">Please provide an answer.</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
