@@ -1,0 +1,64 @@
+<!-- admincert.component.html -->
+<h1>List of Certifications</h1>
+
+<!-- Add Certification Section -->
+<div class="mb-3">
+  <h3>Add Certification</h3>
+  <div>
+    <label for="certTitle">Title:</label>
+    <input
+      id="certTitle"
+      type="text"
+      [(ngModel)]="newCertification.title"
+      class="form-control"
+    />
+  </div>
+  <div>
+    <label for="certDesc">Description:</label>
+    <textarea
+      id="certDesc"
+      [(ngModel)]="newCertification.description"
+      class="form-control"
+    ></textarea>
+  </div>
+  <div>
+    <label for="certCategory">Category ID:</label>
+    <input
+      id="certCategory"
+      type="text"
+      [(ngModel)]="newCertification.categoryID"
+      class="form-control"
+    />
+  </div>
+  <div>
+    <label for="certAbbreviation">Abbreviation:</label>
+    <input
+      id="certAbbreviation"
+      type="text"
+      [(ngModel)]="newCertification.abbreviation"
+      class="form-control"
+    />
+  </div>
+  <button (click)="addCertification()" class="btn btn-success mt-3">Add</button>
+</div>
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let certification of certifications">
+    <h3
+      contentEditable="true"
+      (input)="onCertificationTitleChange(certification, $event)"
+      class="mb-2"
+    >
+      {{ certification.title }}
+    </h3>
+    <p
+      contentEditable="true"
+      (input)="onCertificationDescriptionChange(certification, $event)"
+    >
+      {{ certification.description }}
+    </p>
+    <button (click)="saveCertification(certification)" class="btn btn-primary">
+      Save
+    </button>
+  </li>
+</ul>

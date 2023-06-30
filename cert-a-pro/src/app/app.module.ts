@@ -28,6 +28,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminusersComponent } from './adminusers/adminusers.component';
 import { AdminqComponent } from './adminq/adminq.component';
 import { AdmincatComponent } from './admincat/admincat.component';
+import { AdmincertComponent } from './admincert/admincert.component';
 const appRoutes: Routes =[
   {path: 'certifications', component: CertificationsComponent}
 ]
@@ -45,7 +46,8 @@ const appRoutes: Routes =[
     AdminComponent,
     AdminusersComponent,
     AdminqComponent,
-    AdmincatComponent
+    AdmincatComponent,
+    AdmincertComponent
     
   ],
   imports: [

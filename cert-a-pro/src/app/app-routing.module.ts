@@ -10,7 +10,8 @@ import { QuizComponent } from './quiz/quiz.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminusersComponent } from './adminusers/adminusers.component';
 import { AdminqComponent } from './adminq/adminq.component';
-import { AdmincatComponent } from './admincat/admincat.component'; 
+import { AdmincatComponent } from './admincat/admincat.component';
+import { AdmincertComponent } from './admincert/admincert.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/homepage', pathMatch: 'full'},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'admin/users', component: AdminusersComponent},
   {path: 'admin/questions', component: AdminqComponent},
   {path: 'admin/categories', component: AdmincatComponent},
+  {path: 'admin/certifications', component: AdmincertComponent},
 ];
 
 @NgModule({
