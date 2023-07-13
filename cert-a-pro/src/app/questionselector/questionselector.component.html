@@ -1,8 +1,8 @@
-<div>
-  <p>{{ certificationTitle }}</p>
-  <div class="dropdown">
+<div class="selectcont">
+  <p class="certtitle">{{ certificationTitle }}</p>
+  <div class="dropdown m-1">
     <button
-      class="btn btn-secondary dropdown-toggle"
+      class="btn btn-secondary dropdown-toggle rounded-0 sel"
       type="button"
       data-bs-toggle="dropdown"
       aria-expanded="false"
@@ -17,7 +17,10 @@
       </li>
     </ul>
   </div>
-  <button class="btn btn-primary mt-3" (click)="submitSelection()">
+  <button
+    class="btn btn-primary mt-3 rounded-0 m-1 sub"
+    (click)="submitSelection()"
+  >
     Submit
   </button>
 </div>

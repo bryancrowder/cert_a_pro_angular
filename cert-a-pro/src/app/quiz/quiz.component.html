@@ -1,50 +1,54 @@
-<h1>Quiz Component</h1>
+<div class="quizcont">
+  <h1>Quiz Component</h1>
 
-<div *ngIf="questions.length > 0">
-  <p>Percentage of correct answers: {{ calculatePercentage() }}%</p>
-  <!-- Display the percentage -->
-  <h2>Questions:</h2>
-  <ul class="question-list">
-    <li *ngFor="let question of questions; let i = index">
-      <h3>{{ question.question }}</h3>
+  <div *ngIf="questions.length > 0">
+    <p>Percentage of correct answers: {{ calculatePercentage() }}%</p>
+    <!-- Display the percentage -->
+    <h2>Questions:</h2>
+    <ul class="question-list">
+      <li *ngFor="let question of questions; let i = index">
+        <h3>{{ question.question }}</h3>
 
-      <ul class="answer-list">
-        <li *ngFor="let answer of question.answers">
-          <label>
-            <ng-template
-              [ngIf]="question.questionType === 'QuestionType.selectOne'"
-            >
-              <input
-                type="radio"
-                [name]="'question-' + i"
-                [value]="answer"
-                [checked]="question.selectedAnswer === answer"
-                (change)="selectAnswer(question, answer)"
-              />
-            </ng-template>
-            <ng-template
-              [ngIf]="question.questionType === 'QuestionType.selectAll'"
-            >
-              <input
-                type="checkbox"
-                [name]="'question-' + i"
-                [value]="answer"
-                [checked]="
-                  question.selectedAnswers &&
-                  question.selectedAnswers.includes(answer)
-                "
-                (change)="selectAnswer(question, answer)"
-              />
-            </ng-template>
-            {{ answer.answer }}
-          </label>
-        </li>
-      </ul>
-    </li>
-  </ul>
-  <button (click)="submitQuiz()">Submit</button>
-</div>
+        <ul class="answer-list">
+          <li *ngFor="let answer of question.answers">
+            <label>
+              <ng-template
+                [ngIf]="question.questionType === 'QuestionType.selectOne'"
+              >
+                <input
+                  type="radio"
+                  [name]="'question-' + i"
+                  [value]="answer"
+                  [checked]="question.selectedAnswer === answer"
+                  (change)="selectAnswer(question, answer)"
+                />
+              </ng-template>
+              <ng-template
+                [ngIf]="question.questionType === 'QuestionType.selectAll'"
+              >
+                <input
+                  type="checkbox"
+                  [name]="'question-' + i"
+                  [value]="answer"
+                  [checked]="
+                    question.selectedAnswers &&
+                    question.selectedAnswers.includes(answer)
+                  "
+                  (change)="selectAnswer(question, answer)"
+                />
+              </ng-template>
+              {{ answer.answer }}
+            </label>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <button class="btn btn-primary rounded-1 sub" (click)="submitQuiz()">
+      Submit
+    </button>
+  </div>
 
-<div *ngIf="questions.length === 0">
-  <p>No questions found.</p>
+  <div *ngIf="questions.length === 0">
+    <p>No questions found.</p>
+  </div>
 </div>

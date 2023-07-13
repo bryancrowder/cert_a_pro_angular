@@ -1,11 +1,30 @@
+.sign{
+  background-color: #87CBB9;
+  height: 100vh;
+  z-index: -1;
+}
+
 .signup-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  width: 450px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-color: white;
+}
+
+  .create{
+    background-color: #001C30;
   }
-  
+  .google{
+    background-color: #db4437;
+  }
   .form-group {
     margin-bottom: 20px;
   }
@@ -32,7 +51,6 @@
   .btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #4caf50;
     color: #fff;
     border: none;
     border-radius: 4px;

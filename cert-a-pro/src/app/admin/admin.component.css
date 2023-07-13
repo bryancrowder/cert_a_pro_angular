@@ -1,3 +1,15 @@
+
+.crd{
+    background-color: #001C30;
+}
 .test{
     position: relative;
+}
+.admincon{
+    background-color:#87CBB9;
+    color:white;
+    height: 100vh;
+    position: relative;
+    overflow: auto; /* Enable scrolling when content exceeds viewport */
+    padding: 5px;
 }

@@ -1,13 +1,21 @@
 .login-container {
-  max-width: 400px;
+  width: 450px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 40px;
-  background-color: #f8f8f8;
+  padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-color: white;
 }
-
+.log{
+  background-color: #87CBB9;
+  height: 100vh;
+}
 h1 {
   text-align: center;
   margin-bottom: 30px;
@@ -36,7 +44,7 @@ button[type="button"] {
   display: block;
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #001C30;
   color: #fff;
   border: none;
   border-radius: 5px;

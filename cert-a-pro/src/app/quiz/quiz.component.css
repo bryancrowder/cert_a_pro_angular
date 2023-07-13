@@ -1,5 +1,17 @@
+.quizcont{
+  background-color:#87CBB9;
+  color:white;
+  height: 100vh;
+  position: relative;
+  overflow: auto; /* Enable scrolling when content exceeds viewport */
+  padding: 5px;
+}
+
 .answer-list, .question-list {
     list-style-type: none;
     padding-left: 0;
+  }
+  .sub{
+    background-color: #001C30;
   }
   
