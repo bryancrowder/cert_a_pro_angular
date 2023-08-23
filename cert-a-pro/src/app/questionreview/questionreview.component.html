@@ -1,1 +1,23 @@
-<p>questionreview works!</p>
+<div class="review-cont">
+  <h2 class="mb-4">Question Review</h2>
+  <p>Percentage of correct answers: {{ percentage | number : "1.0-2" }}%</p>
+
+  <div class="card mb-4" *ngFor="let question of questions">
+    <div class="card-body">
+      <h5 class="card-title">{{ question.question }}</h5>
+      <p class="card-text">
+        Your answer:
+        <span
+          [ngClass]="{
+            'text-success': isAnswerCorrect(question),
+            'text-danger': !isAnswerCorrect(question)
+          }"
+          >{{ getSelectedAnswer(question) }}</span
+        >
+      </p>
+      <p class="card-text">
+        Correct answer(s): {{ getCorrectAnswers(question) }}
+      </p>
+    </div>
+  </div>
+</div>

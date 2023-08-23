@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { getFirestore, getDoc, doc, collection, getDocs } from 'firebase/firestore';
+import { Router } from '@angular/router';
 
 interface QuizQuestion {
   answers: any[];
@@ -22,7 +23,8 @@ export class QuizComponent implements OnInit {
   selectedAnswers: any[] = [];
   correctCount: number = 0;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
+
 
   ngOnInit() {
     this.route.queryParams.subscribe(async (params: Params) => {
@@ -124,17 +126,26 @@ export class QuizComponent implements OnInit {
       }
     }
 
-    const percentage = (correctAnswersCount / this.questions.length) * 100;
+  // Calculate the percentage
+  const percentage = (correctAnswersCount / this.questions.length) * 100;
+  this.correctCount = correctAnswersCount;
+  console.log('State Data:', {
+    questions: this.questions,
+    correctCount: this.correctCount,
+    totalQuestions: this.questions.length,
+    percentage: percentage
+    
+  });
 
-    console.log(`Percentage of correct answers: ${percentage}%`);
-
-    this.correctCount = correctAnswersCount;
-
-    for (const question of this.questions) {
-      question.correctCount = question.answers.filter(
-        (answer: any) => answer.correctAnswer
-      ).length;
-    }
+    // Navigate to the question review component
+    this.router.navigate(['/quizreview'], {
+      queryParams: {
+        questions: JSON.stringify(this.questions),
+        correctCount: this.correctCount,
+        totalQuestions: this.questions.length,
+        percentage: percentage
+      }
+    });
   }
 
   calculatePercentage(): number {

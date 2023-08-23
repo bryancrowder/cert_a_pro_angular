@@ -12,6 +12,7 @@ import { AdminusersComponent } from './adminusers/adminusers.component';
 import { AdminqComponent } from './adminq/adminq.component';
 import { AdmincatComponent } from './admincat/admincat.component';
 import { AdmincertComponent } from './admincert/admincert.component';
+import { QuestionreviewComponent } from './questionreview/questionreview.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/homepage', pathMatch: 'full'},
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'admin/questions', component: AdminqComponent},
   {path: 'admin/categories', component: AdmincatComponent},
   {path: 'admin/certifications', component: AdmincertComponent},
+  {path: 'quizreview', component: QuestionreviewComponent},
 ];
 
 @NgModule({
