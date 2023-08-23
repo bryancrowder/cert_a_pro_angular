@@ -1,6 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { getFirestore, collection, query, where, getDocs, DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
+import { getFirestore, getDoc, doc, collection, getDocs } from 'firebase/firestore';
+
+interface QuizQuestion {
+  answers: any[];
+  question: string;
+  questionType: string;
+  selectedAnswer: any | null;
+  selectedAnswers?: any[];
+  correctCount?: number;
+}
 
 @Component({
   selector: 'app-quiz',
@@ -9,45 +18,68 @@ import { getFirestore, collection, query, where, getDocs, DocumentData, QueryDoc
 })
 export class QuizComponent implements OnInit {
   certificationID: string | null = null;
-  questions: any[] = [];
+  questions: QuizQuestion[] = [];
   selectedAnswers: any[] = [];
   correctCount: number = 0;
-  selectedQuestionCount: number | null = null; // Add this line
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe((params: Params) => {
+    this.route.queryParams.subscribe(async (params: Params) => {
       this.certificationID = params['certificationID'] || null;
-      this.selectedQuestionCount = +params['count'] || null; // Parse the count from query parameters
       if (this.certificationID) {
-        this.getQuestions();
+        await this.getQuestions();
+        console.log('Questions:', this.questions);
+  
+        const selectedQuestionCount = parseInt(params['count'], 10);
+        this.questions = this.questions.slice(0, selectedQuestionCount);
+        console.log('Selected Questions:', this.questions);
       }
     });
   }
-
+  
+  
   async getQuestions() {
     const firestore = getFirestore();
-    const questionsQuery = query(
-      collection(firestore, 'questions'),
-      where('certificationID', '==', this.certificationID)
-    );
-    const querySnapshot = await getDocs(questionsQuery);
-  
-    this.questions = querySnapshot.docs
-      .map((doc: QueryDocumentSnapshot<DocumentData>) => {
-        const questionData = doc.data();
-        questionData['answers'] = JSON.parse(questionData['answers']); // Parse the answers field
-        questionData['selectedAnswer'] = null; // Initialize selected answer
-        questionData['correctCount'] = questionData['answers'].filter(
-          (answer: any) => answer.correctAnswer
-        ).length; // Calculate correctCount based on correct answers
-        return questionData;
-      })
-      .slice(0, this.selectedQuestionCount as number); // Slice the array to the selected question count
 
+    try {
+      const collectionRef = collection(firestore, 'questions_array');
+      const querySnapshot = await getDocs(collectionRef);
+
+      if (!querySnapshot.empty) {
+        const questionDoc = querySnapshot.docs.find(doc => doc.data()['certification_id'] === this.certificationID);
+
+        if (questionDoc) {
+          const questionData = questionDoc.data();
+          console.log(questionData)
+          this.questions = questionData['questions'].map((questionString: string) => {
+            console.log('Question String:', questionString); // Add this line
+            const questionData = JSON.parse(questionString);
+            return {
+              answers: questionData.answers,
+              question: questionData.question,
+              questionType: questionData.questionType,
+              selectedAnswer: null,
+              selectedAnswers: []
+            } as QuizQuestion;
+          });
+
+          console.log('Fetched Questions:', this.questions);
+        } else {
+          console.log('Questions document not found for certification_id:', this.certificationID);
+        }
+      } else {
+        console.log('No questions found');
+      }
+    } catch (error) {
+      console.error('Error fetching questions:', error);
+    }
   }
   
+  
+  
+  
+
   
 
   selectAnswer(question: any, answer: any) {
@@ -55,63 +87,60 @@ export class QuizComponent implements OnInit {
       if (!question.selectedAnswers) {
         question.selectedAnswers = [];
       }
-  
-      // Check if the answer is already selected
+
       const answerIndex = question.selectedAnswers.indexOf(answer);
-  
+
       if (answerIndex > -1) {
-        // If answer is already selected, remove it
         question.selectedAnswers.splice(answerIndex, 1);
       } else {
-        // If answer is not selected, add it
         question.selectedAnswers.push(answer);
       }
     } else {
-      // For other question types, handle as before (single selection)
       question.selectedAnswer = answer;
     }
   }
-submitQuiz() {
-  this.selectedAnswers = [];
-  let correctAnswersCount = 0; // Declare the variable here
 
-  for (const question of this.questions) {
-    if (question.questionType === 'QuestionType.selectAll') {
-      const selectedCorrectAnswers = question.answers.filter(
-        (answer: any) =>
-          answer.correctAnswer && question.selectedAnswers && question.selectedAnswers.includes(answer)
-      );
-      
+  async submitQuiz() {
+    this.selectedAnswers = [];
+    let correctAnswersCount = 0;
 
-      if (selectedCorrectAnswers.length === question.correctCount) {
+    for (const question of this.questions) {
+      if (question.questionType === 'QuestionType.selectAll') {
+        const selectedCorrectAnswers = question.answers.filter(
+          (answer: any) =>
+            answer.correctAnswer &&
+            question.selectedAnswers &&
+            question.selectedAnswers.includes(answer)
+        );
+
+        if (selectedCorrectAnswers.length === question.correctCount) {
+          correctAnswersCount++;
+        }
+      } else if (
+        question.selectedAnswer &&
+        question.selectedAnswer.correctAnswer
+      ) {
         correctAnswersCount++;
       }
-    } else if (question.selectedAnswer && question.selectedAnswer.correctAnswer) {
-      correctAnswersCount++;
+    }
+
+    const percentage = (correctAnswersCount / this.questions.length) * 100;
+
+    console.log(`Percentage of correct answers: ${percentage}%`);
+
+    this.correctCount = correctAnswersCount;
+
+    for (const question of this.questions) {
+      question.correctCount = question.answers.filter(
+        (answer: any) => answer.correctAnswer
+      ).length;
     }
   }
 
-  console.log(this.selectedAnswers);
-
-  const percentage = (correctAnswersCount / this.questions.length) * 100;
-
-  console.log(`Percentage of correct answers: ${percentage}%`);
-
-  this.correctCount = correctAnswersCount;
-
-  // Update the correctCount property for each question
-  for (const question of this.questions) {
-    question.correctCount = question.answers.filter((answer: any) => answer.correctAnswer).length;
-  }
-}
-
-  
   calculatePercentage(): number {
-    const percentage = (this.correctCount > 0) ? (this.correctCount / this.questions.length) * 100 : 0;
+    const percentage = (this.correctCount > 0)
+      ? (this.correctCount / this.questions.length) * 100
+      : 0;
     return Math.round(percentage);
   }
-  
-  
-  
-
 }
