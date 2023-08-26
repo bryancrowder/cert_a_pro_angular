@@ -1,0 +1,18 @@
+.review-cont{
+    background-color: #87cbb9;
+    color: white;
+    height: 100vh;
+}
+#card{
+    background-color:#001C30;
+    color: white;
+    margin: 5px;
+}
+#score{
+    font-size: 45px;
+    text-align: center;
+}
+#title{
+    text-align: center;
+    font-size: 55px;
+}
