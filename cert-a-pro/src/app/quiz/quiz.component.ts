@@ -41,26 +41,28 @@ export class QuizComponent implements OnInit {
   }
   
   
-  async getQuestions() {
-    const firestore = getFirestore();
+async getQuestions() {
+  const firestore = getFirestore();
 
-    try {
-      const collectionRef = collection(firestore, 'questions_array');
-      const querySnapshot = await getDocs(collectionRef);
+  try {
+    const collectionRef = collection(firestore, 'question_array');
+    const querySnapshot = await getDocs(collectionRef);
 
-      if (!querySnapshot.empty) {
-        const questionDoc = querySnapshot.docs.find(doc => doc.data()['certification_id'] === this.certificationID);
+    if (!querySnapshot.empty) {
+      console.log('Query Snapshot:', querySnapshot.docs);
+      
+      const questionDoc = querySnapshot.docs.find(doc => doc.data()['certification_id'] === this.certificationID);
 
-        if (questionDoc) {
-          const questionData = questionDoc.data();
-          console.log(questionData)
-          this.questions = questionData['questions'].map((questionString: string) => {
-            console.log('Question String:', questionString); // Add this line
-            const questionData = JSON.parse(questionString);
+      if (questionDoc) {
+        const questionData = questionDoc.data();
+        console.log('Question Data:', questionData);
+        
+        if (questionData['questions'] && questionData['questions'].length > 0) {
+          this.questions = questionData['questions'].map((questionData: any) => {
             return {
-              answers: questionData.answers,
-              question: questionData.question,
-              questionType: questionData.questionType,
+              answers: JSON.parse(questionData['answers']),
+              question: questionData['question'],
+              questionType: questionData['questionType'],
               selectedAnswer: null,
               selectedAnswers: []
             } as QuizQuestion;
@@ -68,17 +70,19 @@ export class QuizComponent implements OnInit {
 
           console.log('Fetched Questions:', this.questions);
         } else {
-          console.log('Questions document not found for certification_id:', this.certificationID);
+          console.log('No questions found in the questions array for certification_id:', this.certificationID);
         }
       } else {
-        console.log('No questions found');
+        console.log('Questions document not found for certification_id:', this.certificationID);
       }
-    } catch (error) {
-      console.error('Error fetching questions:', error);
+    } else {
+      console.log('No documents found in the collection');
     }
+  } catch (error) {
+    console.error('Error fetching questions:', error);
   }
-  
-  
+}
+
   
   
 
