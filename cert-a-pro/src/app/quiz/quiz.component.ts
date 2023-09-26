@@ -41,48 +41,64 @@ export class QuizComponent implements OnInit {
   }
   
   
-async getQuestions() {
-  const firestore = getFirestore();
-
-  try {
-    const collectionRef = collection(firestore, 'question_array');
-    const querySnapshot = await getDocs(collectionRef);
-
-    if (!querySnapshot.empty) {
-      console.log('Query Snapshot:', querySnapshot.docs);
-      
-      const questionDoc = querySnapshot.docs.find(doc => doc.data()['certification_id'] === this.certificationID);
-
-      if (questionDoc) {
-        const questionData = questionDoc.data();
-        console.log('Question Data:', questionData);
-        
-        if (questionData['questions'] && questionData['questions'].length > 0) {
-          this.questions = questionData['questions'].map((questionData: any) => {
-            return {
-              answers: JSON.parse(questionData['answers']),
-              question: questionData['question'],
-              questionType: questionData['questionType'],
-              selectedAnswer: null,
-              selectedAnswers: []
-            } as QuizQuestion;
-          });
-
-          console.log('Fetched Questions:', this.questions);
+  async getQuestions() {
+    const firestore = getFirestore();
+  
+    try {
+      const collectionRef = collection(firestore, 'question_array');
+      const querySnapshot = await getDocs(collectionRef);
+  
+      if (!querySnapshot.empty) {
+        console.log('Query Snapshot:', querySnapshot.docs);
+  
+        const questionDoc = querySnapshot.docs.find(
+          (doc) => doc.data()['certification_id'] === this.certificationID
+        );
+  
+        if (questionDoc) {
+          const questionData = questionDoc.data();
+          console.log('Question Data:', questionData);
+  
+          if (questionData['questions'] && questionData['questions'].length > 0) {
+            this.questions = questionData['questions'].map((questionData: any) => {
+              try {
+                return {
+                  answers: JSON.parse(questionData['answers'] || '[]'), // Handle undefined or invalid JSON
+                  question: questionData['question'],
+                  questionType: questionData['questionType'],
+                  selectedAnswer: null,
+                  selectedAnswers: [],
+                } as QuizQuestion;
+              } catch (e) {
+                console.error('Error parsing JSON for question:', e);
+                return null; // Skip this question if JSON parsing fails
+              }
+            });
+  
+            // Filter out null questions (those with parsing errors)
+            this.questions = this.questions.filter((question) => question !== null);
+  
+            console.log('Fetched Questions:', this.questions);
+          } else {
+            console.log(
+              'No questions found in the questions array for certification_id:',
+              this.certificationID
+            );
+          }
         } else {
-          console.log('No questions found in the questions array for certification_id:', this.certificationID);
+          console.log(
+            'Questions document not found for certification_id:',
+            this.certificationID
+          );
         }
       } else {
-        console.log('Questions document not found for certification_id:', this.certificationID);
+        console.log('No documents found in the collection');
       }
-    } else {
-      console.log('No documents found in the collection');
+    } catch (error) {
+      console.error('Error fetching questions:', error);
     }
-  } catch (error) {
-    console.error('Error fetching questions:', error);
   }
-}
-
+  
   
   
 

@@ -1,6 +1,6 @@
-<div class="certcont" *ngIf="certifications.length > 0">
+<div class="certcont" *ngIf="certifications[0]?.certifications.length > 0">
   <h1 class="certhead">Certifications</h1>
-  <div class="certitem" *ngFor="let certification of certifications">
+  <div class="certitem" *ngFor="let certification of certifications[0]?.certifications">
     <a (click)="navigateToQuestionSelector(certification)">
       <h2>{{ certification?.title }}</h2>
       <p>{{ certification?.description }}</p>
@@ -11,6 +11,6 @@
   <div class="certcont-overlay"></div>
 </div>
 
-<div *ngIf="certifications.length === 0">
+<div *ngIf="certifications[0]?.certifications.length === 0">
   <p>No certifications found.</p>
 </div>

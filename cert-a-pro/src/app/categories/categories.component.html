@@ -1,16 +1,15 @@
 <div class="pagecontainer">
   <h1>Certifications</h1>
-  <div class="catcontainer">
-    <div *ngFor="let category of categories | async" class="itemcont">
-      <a (click)="navigateToCategory(category.id)">
-        <img class="catimage" src="{{ category.image }}" />
-        <div class="overlay">
-          <div class="text">
-            {{ category.title }}
-          </div>
+<div class="catcontainer">
+  <div *ngFor="let category of categories$ | async" class="itemcont">
+    <a (click)="navigateToCategory(category.id)">
+      <img class="catimage" src="{{ category.image }}" />
+      <div class="overlay">
+        <div class="text">
+          {{ category.title }}
         </div>
-      </a>
-    </div>
-    <div class="itemcont"></div>
+      </div>
+    </a>
   </div>
+</div>
 </div>

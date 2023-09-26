@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, collection, query, where, getDocs, doc } from 'firebase/firestore';
+import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
 
 @Component({
   selector: 'app-certifications',
@@ -28,23 +28,26 @@ export class CertificationsComponent implements OnInit {
       if (user) {
         const db = getFirestore();
 
-        const certQuery = query(collection(db, 'certifications'), where('categoryID', '==', this.categoryID));
+        // Update the collection name to 'certification_array'
+        const certQuery = query(collection(db, 'certification_array'), where('categoryID', '==', this.categoryID));
 
         getDocs(certQuery)
-          .then((querySnapshot) => {
-            if (!querySnapshot.empty) {
-              querySnapshot.forEach((doc) => {
-                const certification = doc.data();
-                certification['id'] = doc.id; // Store the document ID as 'id' property in the certification object
-                this.certifications.push(certification); // Store each certification in the array
-              });
-            } else {
-              console.log('No certifications found!');
-            }
-          })
-          .catch((error) => {
-            console.error('Error getting certifications:', error);
-          });
+        .then((querySnapshot) => {
+          if (!querySnapshot.empty) {
+            querySnapshot.forEach((doc) => {
+              const certification = doc.data();
+              certification['id'] = doc.id;
+              this.certifications.push(certification);
+            });
+            console.log('Certifications:', this.certifications); // Log the certifications array
+          } else {
+            console.log('No certifications found!');
+          }
+        })
+        .catch((error) => {
+          console.error('Error getting certifications:', error);
+        });
+      
       } else {
         // User is not logged in, redirect to login page or any other desired action
         this.router.navigate(['/login']);
@@ -61,6 +64,4 @@ export class CertificationsComponent implements OnInit {
       }
     });
   }
-
-
 }
