@@ -2,6 +2,7 @@
   <div *ngIf="questions.length > 0">
     <p>Percentage of correct answers: {{ calculatePercentage() }}%</p>
     <!-- Display the percentage -->
+
     <ul class="question-list">
       <li *ngFor="let question of questions; let i = index">
         <h3>{{ question.question }}</h3>

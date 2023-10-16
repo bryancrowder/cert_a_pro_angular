@@ -1,8 +1,9 @@
 <div class="review-cont">
   <h2 class="mb-4" id="title">Question Review</h2>
+
   <p id="score">You scored a {{ percentage | number : "1.0-2" }}%</p>
 
-  <div id="card" class="card mb-4 " *ngFor="let question of questions">
+  <div id="card" class="card mb-4" *ngFor="let question of questions">
     <div class="card-body">
       <h5 class="card-title">{{ question.question }}</h5>
       <p class="card-text">

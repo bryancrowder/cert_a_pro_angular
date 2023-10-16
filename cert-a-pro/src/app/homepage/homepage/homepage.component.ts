@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-homepage',
@@ -6,10 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent {
-  isLoggedIn: boolean = false;
+  @Input() isLoggedIn: boolean = false; // Receive the isLoggedIn value from the parent component
 
-  login(): void {
-    // Perform login logic here
-    this.isLoggedIn = true;
-  }
+  // ... rest of your code
 }

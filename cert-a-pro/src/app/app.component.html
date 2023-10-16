@@ -30,7 +30,9 @@
         </li>
       </ul>
     </div>
-    <p *ngIf="isLoggedIn">({{ loggedInUsername }})</p>
+    <p *ngIf="isLoggedIn" class="d-none d-lg-block user text-center">
+      Welcome: {{ loggedInUsername }}
+    </p>
   </div>
 </nav>
 
