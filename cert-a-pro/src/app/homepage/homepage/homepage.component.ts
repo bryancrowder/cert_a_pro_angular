@@ -1,12 +1,14 @@
 import { Component, Input } from '@angular/core';
-
+import { AuthService } from '../../auth.service'
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent {
-  @Input() isLoggedIn: boolean = false; // Receive the isLoggedIn value from the parent component
 
-  // ... rest of your code
+  constructor(private authService: AuthService) {}
+  get isLoggedIn() {
+    return this.authService.isLoggedIn;
+  }
 }

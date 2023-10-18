@@ -12,7 +12,9 @@
   flex-direction: column;
   position: relative;
 }
-
+.categories{
+  width: 25vw !important;
+}
 .hero::before {
   content: "";
   position: absolute;
@@ -151,7 +153,7 @@
   .addsec {
     flex: 0 0 calc(33.33% - 10px);
     background-color: #fff;
-    height: 40vh;
+    height: 25vh;
     margin: 5px;
     display: flex;
     align-items: center;

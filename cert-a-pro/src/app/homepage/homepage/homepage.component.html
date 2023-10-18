@@ -1,21 +1,28 @@
 <div class="homecontainer">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Hero -->
   <div class="hero">
     <h1 class="heroheader">One Step Closer To Success</h1>
-    <div *ngIf="!isLoggedIn">
+    <div *ngIf="!isLoggedIn; else categoriesButton">
       <a href="/signup">
         <button type="button" class="signup btn">
           <span>Get Started</span>
-        </button></a
-      >
-      <a href="/login"
-        ><button type="button" class="login btn">
+        </button>
+      </a>
+      <a href="/login">
+        <button type="button" class="login btn">
           <span>Sign in</span>
-        </button></a
-      >
+        </button>
+      </a>
     </div>
+    <ng-template #categoriesButton>
+      <a href="/categories">
+        <button type="button" class="categories btn">
+          <span>Categories</span>
+        </button>
+      </a>
+    </ng-template>
   </div>
   <!-- Growth Section -->
   <div class="growthsection">
@@ -29,15 +36,15 @@
           <div class="why-box">
             <h3>Why Choose us?</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis
-              aute irure dolor in reprehenderit Asperiores dolores sed et.
-              Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio
-              ad corporis.
+              We are dedicated to making certifications a breeze by giving users
+              up to date and relavent questions to help facilitate success
             </p>
             <div class="text-center">
-              <a href="#" class="more-btn"
-                >Learn More <i class="bx bx-chevron-right"></i
+              <a
+                href="https://blktechnologies.io/aboutus"
+                target="_blank"
+                class="more-btn"
+                >Learn More About Us <i class="bx bx-chevron-right"></i
               ></a>
             </div>
           </div>
@@ -46,43 +53,56 @@
 
         <div class="col-lg-8 d-flex align-items-center test2">
           <div class="row gy-4">
-            <div class="col-xl-4 addsec" data-aos="fade-up" data-aos-delay="200">
+            <div
+              class="col-xl-4 addsec"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
               <div
                 class="icon-box d-flex flex-column justify-content-center align-items-center"
               >
-                <i class="fa-solid fa-book"></i>
-                <h4>Corporis voluptates officia eiusmod</h4>
+                <i class="fa-solid fa-fire"></i>
+                <h4>Popular certifications</h4>
                 <p>
-                  Consequuntur sunt aut quasi enim aliquam quae harum pariatur
-                  laboris nisi ut aliquip
+                  Cert-A-Pro has all of the trending certifications all in one
+                  location
                 </p>
               </div>
             </div>
             <!-- End Icon Box -->
 
-            <div class="col-xl-4 addsec" data-aos="fade-up" data-aos-delay="300">
+            <div
+              class="col-xl-4 addsec"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
               <div
                 class="icon-box d-flex flex-column justify-content-center align-items-center"
               >
-                <i class="fa-solid fa-person-chalkboard"></i>
-                <h4>Ullamco laboris ladore pan</h4>
+                <i class="fa-regular fa-circle-question"></i>
+                <h4>Modular Questions</h4>
                 <p>
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                  qui officia deserunt
+                  Our quizes will allow to see many questions that you may see
+                  on your test. You are able to pick the amount of questions as
+                  well as see your results
                 </p>
               </div>
             </div>
             <!-- End Icon Box -->
 
-            <div class="col-xl-4 addsec" data-aos="fade-up" data-aos-delay="400">
+            <div
+              class="col-xl-4 addsec"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
               <div
                 class="icon-box d-flex flex-column justify-content-center align-items-center"
               >
-                <i class="fa-solid fa-user-graduate"></i>
-                <h4>Labore consequatur incidid dolore</h4>
+                <i class="fa-brands fa-app-store"></i>
+                <h4>Cross-Platform</h4>
                 <p>
-                  Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut
-                  maiores omnis facere
+                  Cert-A-Pro is not only avaliable on desktop but is also found
+                  on the play store and the apple store
                 </p>
               </div>
             </div>

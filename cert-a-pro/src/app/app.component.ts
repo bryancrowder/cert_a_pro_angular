@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { getAuth, signOut, onAuthStateChanged, User } from 'firebase/auth';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,16 +10,16 @@ import { getAuth, signOut, onAuthStateChanged, User } from 'firebase/auth';
 export class AppComponent {
   title = 'cert-a-pro';
   isLoggedIn = false;
-  loggedInUsername: string | null = null; // Property to store the logged-in user's username
+  loggedInUsername: string | null = null;
 
   constructor() {
     const auth = getAuth();
     onAuthStateChanged(auth, (user: User | null) => {
       this.isLoggedIn = !!user;
       if (user) {
-        this.loggedInUsername = user.displayName; // Set the username of the logged-in user
+        this.loggedInUsername = user.displayName;
       } else {
-        this.loggedInUsername = null; // Reset the username when the user is logged out
+        this.loggedInUsername = null;
       }
     });
   }
@@ -28,7 +29,6 @@ export class AppComponent {
     signOut(auth)
       .then(() => {
         console.log('User logged out successfully.');
-        // Additional logic here, such as redirecting to the login page
       })
       .catch((error) => {
         console.error('Error logging out:', error);
